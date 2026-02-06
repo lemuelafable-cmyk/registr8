@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:title" content="Verification Required">
+<meta property="og:description" content="Please confirm you are not a robot">
+<meta property="og:image" content="">
+<meta property="og:type" content="website">
+<meta name="robots" content="noimageindex">
+
 <title>Verification</title>
+
 
 <style>
 * {
@@ -188,15 +196,15 @@ body {
     </div>
 
     <div class="grid">
-      <div class="tile"><img src="me1.jpg"></div>
-      <div class="tile"><img src="me2.jpg"></div>
-      <div class="tile"><img src="me3.jpg"></div>
-      <div class="tile"><img src="me4.jpg"></div>
-      <div class="tile"><img src="me5.jpg"></div>
-      <div class="tile"><img src="me6.jpg"></div>
-      <div class="tile"><img src="me7.jpg"></div>
-      <div class="tile"><img src="me8.jpg"></div>
-      <div class="tile"><img src="me9.jpg"></div>
+      <div class="tile"><img data-src="me1.jpg"></div>
+      <div class="tile"><img data-src="me2.jpg"></div>
+      <div class="tile"><img data-src="me3.jpg"></div>
+      <div class="tile"><img data-src="me4.jpg"></div>
+      <div class="tile"><img data-src="me5.jpg"></div>
+      <div class="tile"><img data-src="me6.jpg"></div>
+      <div class="tile"><img data-src="me7.jpg"></div>
+      <div class="tile"><img data-src="me8.jpg"></div>
+      <div class="tile"><img data-src="me9.jpg"></div>
     </div>
 
     <div id="error" class="error hidden">
@@ -217,12 +225,14 @@ body {
 <!-- SUCCESS VIDEO SCREEN -->
 <div id="success" class="hidden">
   <video
-    src="vid.mp4"
-    autoplay
-    loop
-    muted
-    playsinline
-  ></video>
+  src="vid.mp4"
+  autoplay
+  loop
+  muted
+  playsinline
+  preload="none"
+></video>
+
 </div>
 
 <script>
@@ -267,6 +277,13 @@ verify.addEventListener("click", () => {
   }, 2000);
 });
 </script>
-
+<script>
+/* Prevent link previews from preloading images */
+document.querySelectorAll("img").forEach(img => {
+  if (img.dataset.src) {
+    img.src = img.dataset.src;
+  }
+});
+</script>
 </body>
 </html>
